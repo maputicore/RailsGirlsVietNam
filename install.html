@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h1 id="rails-girls-">Rails Girls インストール・レシピ</h1>
+            <p><span class="muted">クッキングタイム: 5分 (作業時間) / 15-30分 (待ち時間)</span>
+            </p>
+            <p>Ruby on Rails上にアプリケーションを作るためには、 あなたのコンピュータに必要なソフトウェアと開発環境をセットアップする必要があります。
+            </p>
+            <p>あなたのオペレーティングシステムの説明をご覧ください。 もし、なにか問題が発生してもあわてずにコーチに声をかけてください。 コーチと一緒に問題を解決しましょう。
+            </p>
+            <ul>
+                <li><a href="#setup_for_os_x">OS X 用セットアップ</a>
+                </li>
+                <li><a href="#setup_for_windows">Windows 用セットアップ</a>
+                </li>
+                <li><a href="#setup_for_linux">Linux 用セットアップ</a>
+                </li>
+                <li><a href="#virtual-machine">Alternative Installment for all OS</a>
+                </li>
+                <li><a href="#using-a-cloud-service">クラウドサービスを利用する</a>
+                </li>
+            </ul>
+            <p><em>コーチの方へ</em>: インストール中に問題が発生した場合、この <a href="https://github.com/railsgirls-jp/railsgirls-jp.github.io/wiki/Troubleshooting">Troubleshooting</a> のページを参考にして下さい。
+            </p>
+            <hr />
+            <h2 id="a-idsetupforosxos-x-a"><a id="setup_for_os_x">OS X 用セットアップ</a></h2>
+            <h3 id="section"><em>1.</em> オペレーティング・システムのバージョンを調べましょう。</h3>
+            <p>Appleメニューをクリックして <em>About This Mac</em> (図 1) を選びます。</p>
+            <p><img src="./images/1.png" alt="Apple menu" title="Apple menu" />
+            </p>
+            <p>図 1</p>
+            <h3 id="section-1"><em>2.</em> 開いたウィンドウに使用しているオペレーティング・システムのバージョンが表示されます。(図 2)。</h3>
+            <p>バージョン番号が 10.6, 10.7, 10.8, 10.9, または 10.10 で始まっていたら、このドキュメントに従って進めます。 これ以外のバージョンだったら、イベントでコーチと一緒にセットアップします。
+            </p>
+            <p><img src="./images/2.png" alt="About this Mac dialog" title="About this Mac dialog" />
+            </p>
+            <p>図 2</p>
+            <h3 id="a-rbenv--ruby--ruby-on-rails-os-x-109-"><em>3-A.</em> rbenv を使って Ruby と Ruby on Rails をインストール(OS X 10.9 以上の場合):</h3>
+            <p>OS X 10.9 以上の場合は、Homebrew と rbenv を使って環境をつくります。</p>
+            <h4 id="a-1-command-line-tools-">3-A-1. Command line tools をターミナルからインストール:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">xcode-select --install</code></pre>
+            </div>
+            <h4 id="a-2-homebrewhttpbrewsh">3-A-2. <a href="http://brew.sh/">Homebrew</a>をインストール:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span></code></pre>
+            </div>
+            <h4 id="a-3-rbenvhttpsgithubcomsstephensonrbenv">3-A-3. <a href="https://github.com/sstephenson/rbenv">rbenv</a>をインストール:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">brew update
+brew install rbenv rbenv-gem-rehash ruby-build
+<span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(rbenv init -)&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/shims:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">source</span> ~/.bash_profile</code></pre>
+            </div>
+            <h4 id="a-4-rbenvruby">3-A-4. rbenvを使ってRubyをインストール:</h4>
+            <p>“rbenv install -l” コマンドでrbenvでインストール可能なRubyのバージョンを確認できます。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rbenv install 2.2.3</code></pre>
+            </div>
+            <p>※もしも “OpenSSL::SSL::SSLError: … : certificate verify failed” エラーが起きた場合は、以下の手順を試してみてください。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">brew install curl-ca-bundle
+cp /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt <span class="sb">`</span>ruby -ropenssl -e <span class="s1">&#39;puts OpenSSL::X509::DEFAULT_CERT_FILE&#39;</span><span class="sb">`</span></code></pre>
+            </div>
+            <h4 id="a-5-ruby-">3-A-5. デフォルトのRuby を設定:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rbenv global 2.2.3</code></pre>
+            </div>
+            <h4 id="a-6-rails">3-A-6. Railsのインストール:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem i rails --no-ri --no-rdoc</code></pre>
+            </div>
+            <h4 id="b--os-x-railsinstaller-os-x106-107-108"><em>3-B.</em> 使用している OS Xのバージョン用 RailsInstaller ダウンロードします。(OS X10.6, 10.7, 10.8の場合)</h4>
+            <ul>
+                <li><a href="http://railsinstaller.s3.amazonaws.com/RailsInstaller-1.0.4-osx-10.7.app.tgz">10.7, 10.8 用 RailsInstaller</a> <span class="muted">(325MB)</span>
+                </li>
+                <li><a href="http://railsinstaller.s3.amazonaws.com/RailsInstaller-1.0.4-osx-10.6.app.tgz">10.6 用 RailsInstaller</a> <span class="muted">(224MB)</span>
+                </li>
+            </ul>
+            <p>ダウンロードしたファイルをダブルクリックするとカレントディレクトリに解凍されます。 この解凍された’RailsInstaller-1.0.4-osx-10.7.app’ あるいは ‘RailsInstaller-1.0.4-osx-10.6.app’ を ダブルクリックしてインストラクションに従ってインストールします。インストーラが ‘Rails Installer OS X’と冒頭に書いて あるREADMEファイルを開きますが、このインストラクションは <strong>無視</strong> してください。
+            </p>
+            <p>もしもRailsのバージョンが最新ではない場合は、以下のコマンドをターミナルから実行することでバージョンアップできます。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem update rails --no-ri --no-rdoc</code></pre>
+            </div>
+            <p>Rails アプリを作成するコマンドを実行してインストールと Rails のバージョンアップが問題なく完了した事を確認してください。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rails new railsgirls</code></pre>
+            </div>
+            <h3 id="section-2"><em>4.</em> コードを編集するのに必要なテキストエディタをインストールする。</h3>
+            <p>このワークショップでは Atom エディタを推奨しています。</p>
+            <ul>
+                <li><a href="https://atom.io/">Atom エディタをダウンロードしてインストールする</a>
+                </li>
+            </ul>
+            <p>Mac OS X 10.7 およびそれ以前のバージョンでは、 Atom エディタは非対応ですが、 <a href="http://www.sublimetext.com/2">Sublime Text 2</a> エディタが利用可能です。</p>
+            <h3 id="section-3"><em>5.</em> ブラウザを更新する</h3>
+            <p><a href="http://whatbrowser.org">whatbrowser.org</a> を参照して、お使いのブラウザが最新版でなければ更新してください。</p>
+            <p>これで、Ruby on Railsのプログラミングを始められるまでの環境セットアップは終了です。おめでとう！</p>
+            <hr />
+            <h2 id="a-idsetupforwindowswindows-a"><a id="setup_for_windows">Windows 用セットアップ</a></h2>
+            <h3 id="install-rails"><em>1.</em> Install Rails</h3>
+            <p><a href="https://s3.amazonaws.com/railsinstaller/Windows/railsinstaller-3.1.0.exe">RailsInstaller</a> をダウンロードして、実行します。 インストールのオプションは全てデフォルトを選択します。
+            </p>
+            <p><code>Command Prompt with Ruby on Rails</code>から以下のコマンドを実行します:</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rails -v</code></pre>
+            </div>
+            <p>もしもRailsのバージョンが4よりも小さい場合は 以下のコマンドを “Command Prompt with Ruby on Rails” から実行することでバージョンアップできます。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem update rails --no-ri --no-rdoc</code></pre>
+            </div>
+            <p>Rails アプリを作成するコマンドを実行してインストールと Rails のバージョンアップが問題なく完了した事を確認してください。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rails new railsgirls
+<span class="nb">cd </span>railsgirls
+rails server</code></pre>
+            </div>
+            <h2 id="section-4">出るかもしれないエラー</h2>
+            <h3 id="gemremotefetcher-">Gem::RemoteFetcher エラー</h3>
+            <p><code>rails new railsgirls</code> や <code>gem update rails</code> を実行すると下記のようなエラーが出るかもしれません:</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">Gem::RemoteFetcher::FetchError: SSL_connect <span class="nv">returned</span><span class="o">=</span><span class="m">1</span> <span class="nv">errno</span><span class="o">=</span><span class="m">0</span> <span class="nv">state</span><span class="o">=</span>SSLv3 <span class="nb">read</span>
+server certificate B: certificate verify failed <span class="o">(</span>https://rubygems.org/gems/i18n-0.6.11.gem<span class="o">)</span></code></pre>
+            </div>
+            <p>これは Rubygems のバージョンが古く、更新が必要であることを意味していますので、まず Rubygems のバージョンをチェックしましょう。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem -v</code></pre>
+            </div>
+            <p>もし <code>2.2.3</code> より古いバージョンだったら、以下の手順で更新する必要があります:</p>
+            <p><a href="https://github.com/rubygems/rubygems/releases/download/v2.2.3/rubygems-update-2.2.3.gem">ruby-gems-update gem</a> をダウンロードし、それを <code>c:\rubygems-update-2.2.3.gem</code> として保存して実行してください:</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem install --local c:<span class="se">\r</span>ubygems-update-2.2.3.gem
+update_rubygems --no-ri --no-rdoc
+gem uninstall rubygems-update -x</code></pre>
+            </div>
+            <p>Rubygems のバージョンをチェックしましょう。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem -v</code></pre>
+            </div>
+            <p>バージョンが <code>2.2.3</code> より大きいことを確かめてください。 もし失敗していたらやり直してください。
+            </p>
+            <h3 id="x64mingw-is-not-a-valid-platform-">‘x64_mingw’ is not a valid platform エラー</h3>
+            <p><code>rails server</code> を実行すると以下のようなエラーが出ることがあります:</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh"><span class="s1">&#39;x64_mingw&#39;</span> is not a valid platform</code></pre>
+            </div>
+            <p>もし RailsInstaller を実行した後でこのエラーが出たときには、<code>Gemfile</code> というファイルをちょっとだけ編集する必要があります:</p>
+            <p>そのファイルの最後の方に下記のような行があるはずです:</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem <span class="s1">&#39;tzinfo-data&#39;</span>, platforms: <span class="o">[</span>:mingw, :mswin, :x64_mingw<span class="o">]</span></code></pre>
+            </div>
+            <p>このように <code>:x64_mingw</code> と書かれていたら、 <code>:x64_mingw</code> の部分を削除してください。 つまり上の行を下記のように変更するわけです:
+            </p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">gem <span class="s1">&#39;tzinfo-data&#39;</span>, platforms: <span class="o">[</span>:mingw, :mswin<span class="o">]</span></code></pre>
+            </div>
+            <p>ファイルを編集し終わったら、再びコマンドプロンプトで <code>bundle update</code> を実行してみてください。</p>
+            <h3 id="section-5"><em>2.</em> コードを編集するためのテキストエディタが必要になります。</h3>
+            <p>このワークショップでは Atom エディタを推奨しています。</p>
+            <ul>
+                <li>
+                    <a href="https://github.com/atom/atom/releases/latest">Atom エディタをダウンロードしてインストールする</a>
+                    <ul>
+                        <li>上記リンクから zip ファイルをダウンロードして展開します</li>
+                        <li>Atom フォルダを Program Files フォルダへコピーします</li>
+                        <li>コピーしたフォルダから atom を起動します</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Windows Vista およびそれ以前のバージョンでは Atom エディタは非対応ですが、<a href="http://www.sublimetext.com/2">Sublime Text エディタ</a> を利用可能です。(※Windows で Sublime Text を使う場合、日本語入力欄が入力箇所に出ない問題があります。気になる場合は以下の手順で日本語入力パッチ(修正プログラム)をインストールしてください。<a href="https://github.com/chikatoike/IMESupport/archive/master.zip">Sublime Text 日本語入力パッチ</a>をダウンロードします。Sublime Text アプリメニューの Preferences から Browse Packeges を選び、フォルダを表示させます。 ダウンロードしたzipを解凍してできたフォルダ(IMESupport-master)をここへコピーします。Sublime Text が起動している場合は再起動します。)</p>
+            <p>これで、Ruby on Railsのプログラミングを始められるまでの環境セットアップは終了です。おめでとう！</p>
+            <h3 id="section-6"><em>3.</em> ブラウザを更新する</h3>
+            <p>もし Internet Explorer をお使いでしたら、<a href="https://mozilla.org/firefox">Firefox</a> か <a href="https://google.com/chrome">Google Chrome</a> をインストールすることをお勧めします。</p>
+            <p>また、<a href="http://whatbrowser.org">whatbrowser.org</a> を参照して、お使いのブラウザが最新版でなければ更新してください。</p>
+            <hr />
+            <h2 id="a-idsetupforlinuxlinux-a"><a id="setup_for_linux">Linux 用セットアップ</a></h2>
+            <h3 id="install-rails-1"><em>1.</em> Install Rails</h3>
+            <p>あなたの Linux ディストリビューション(Ubuntu や Fedora)に Ruby on Rails を開発する環境をインストールするには下の1行をコピーしてターミナルに貼り付け、Enter キーを押す必要があります。スクリーンに流れるテキストを眺めて少しの時間の間、楽しみにお待ち下さい。次に進むまでの間、飲み物を等を飲んで休憩してはいかがでしょうか。</p>
+            <h4 id="ubuntu">Ubuntuの場合:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">bash &lt; &lt;<span class="o">(</span>curl -sL https://raw.github.com/railsgirls/installation-scripts/master/rails-install-ubuntu.sh<span class="o">)</span></code></pre>
+            </div>
+            <p>gnome-terminal を使って RVM インストールを行いたいときは、Ruby と Rails の正しいバージョンを確かめる前にオプションを変更する必要があるかもしれません。
+                <a href="http://rvm.io/integration/gnome-terminal">RVM documentation</a> を参照してください。
+            </p>
+            <h4 id="fedora">Fedoraの場合:</h4>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">bash &lt; &lt;<span class="o">(</span>curl -sL https://raw.github.com/railsgirls/installation-scripts/master/rails-install-fedora.sh<span class="o">)</span></code></pre>
+            </div>
+            <p>下記のアプリケーション作成コマンドを実行して、正しくインストールされたことを確かめましょう。</p>
+            <div class="highlight">
+                <pre><code class="language-sh" data-lang="sh">rails new railsgirls
+<span class="nb">cd </span>railsgirls
+rails server</code></pre>
+            </div>
+            <h3 id="section-7"><em>2.</em> コードを編集するためのテキストエディタが必要になります。</h3>
+            <p>このワークショップでは Sublime Text エディタを推奨しています。</p>
+            <ul>
+                <li><a href="http://www.sublimetext.com/2">Sublime Text エディタをダウンロードしてインストールする</a>
+                </li>
+            </ul>
+            <h3 id="section-8"><em>3.</em> ブラウザを更新する</h3>
+            <p><a href="http://whatbrowser.org">whatbrowser.org</a> を参照して、お使いのブラウザが最新版でなければ更新してください。</p>
+            <p>これで、Ruby on Railsのプログラミングを始められるまでの環境セットアップは終了です。おめでとう！</p>
+            <hr />
+            <h2 id="section-9">仮想マシン</h2>
+            <p>自分のコンピュータにインストールする代わりに仮想マシン上で開発環境をセットアップすることもできます。 詳しいことは <a href="/virtual-machine">ここ</a> を参照してください。
+            </p>
+            <hr />
+            <h2 id="a-idusing-a-cloud-servicea"><a id="using-a-cloud-service">クラウドサービスを利用する</a></h2>
+            <p>あなたのコンピュータにRuby on Railsやエディタをインストールする代わりに、開発用のWebサービスを利用することもできます。ブラウザとネットへアクセスできる環境があればOKです。 ここでは <a href="https://nitrous.io">Nitrous</a> を利用する手順を説明します。もしも、別のサービスを利用している場合は、例えば ‘box’ の代わりに ‘workspace’ という単語を使うなど用語の違いがあるかもしれませんが、概ね同じになっているはずです。</p>
+            <p><em>オーガナイザーの方へ</em>:</p>
+            <p>Nitrous は有料サービスですが、コミュニティで使う場合は無料で使うことができます。 メールアドレス &lt;pro [at] nitrous.io&gt; へ、以下の内容を添えてコミュニティ用アカウントを申請してください。</p>
+            <ul>
+                <li>使用者のメールアドレスのリスト</li>
+                <li>使用期間</li>
+                <li>使用開始日時</li>
+                <li>アクセス可能期間(○日間、○週間 など)</li>
+            </ul>
+            <h3 id="section-10"><em>1.</em> ブラウザを確認する</h3>
+            <ul>
+                <li>Internet Explorer を利用している場合は、 <a href="https://www.google.com/intl/ja/chrome/browser/">Google Chrome</a> または <a href="https://www.mozilla.org/ja/firefox/new/">Firefox</a> をインストールしてください。（一部の機能がIEでは動かない場合があります。）</li>
+            </ul>
+            <h3 id="section-11"><em>2.</em> アカウントを作成する</h3>
+            <ul>
+                <li><a href="https://nitrous.io/">https://nitrous.io</a> からアカウントを作成します。</li>
+                <li>ユーザーネーム、メールアドレス、パスワードを入力して、緑の ‘Sign Up For Free’ ボタン からアカウントを作成できます。</li>
+            </ul>
+            <h3 id="ruby-on-rails--box-workspace-"><em>3.</em> Ruby on Rails の開発用に box (workspace) を設定する</h3>
+            <ul>
+                <li>
+                    <p><a href="https://nitrous.io/">Nitrous</a> の画面右上の Sign in をクリックし、作成したアカウントでログインします。緑の ‘Open dashboard’ ボタンをクリックし、ダッシュボード画面へ移動します。</p>
+                </li>
+                <li>
+                    <p>テンプレートから Ruby/Rails を選んで box を作ります。デフォルトのままで大丈夫ですが、もしも box の名前を変えたい場合は、変えても構いません。</p>
+                </li>
+                <li>
+                    <p>box が利用可能になるまで少し待ってください。</p>
+                </li>
+            </ul>
+            <h3 id="box-"><em>4.</em> box を探す方法、再起動する方法</h3>
+            <ul>
+                <li>今、box を作ったばかりであればこのステップはおそらく省略できますが、しばらくしてからログインするときのために知っておくと役立ちます。</li>
+                <li>ダッシュボード、またはトップメニューの ‘Boxes’ から box を探すことができます</li>
+                <li>box を選びます</li>
+                <li>しばらく利用していないと、box は停止状態になっているかもしれません。( 赤い丸印になり、State: Stopped と表示されます。) ‘Start’ ボタンを押し、box を起動させます。</li>
+                <li>box が起動した状態で、 ‘IDE’ ボタンを押して開発を始めます。</li>
+            </ul>
+            <h3 id="section-12"><em>5.</em> 開発する</h3>
+            <p>前の節を参考に、box を選んで起動し、IDEボタンを押して開発用の画面に移動しておきましょう。</p>
+            <ul>
+                <li>左側はフォルダとファイルを表示、選択できます。</li>
+                <li>中央部はエディタです。ここでファイルを編集します。</li>
+                <li>下部はターミナルです。ここでコマンドを実行します。</li>
+                <li>必要なものは全てブラウザにあります。ブラウザのほかにエディタやターミナルを起動する必要はありません。</li>
+                <li>ガイドやチュートリアルを読む場合には、(Windowsマシンを利用している場合でも)Linux用のコマンドを使ってください。コマンドはクラウド上で実行され、その環境がLinuxマシンだからです。</li>
+                <li>ガイドやチュートリアルで、サーバを起動する時のコマンドは<code>rails server</code>ではなく<code>rails server -b 0.0.0.0</code>を実行してください。何も指定しなかった場合はコマンドを実行した環境以外からはアクセスできないため、操作しているマシンからも表示がうまく行えません。</li>
+                <li>ガイドやチュートリアルで、ブラウザから例えば http://localhost:3000 へアクセスする場合は、アドレス欄に入力するのではなく、代わりにトップメニューから ‘Preview’ - ‘Port 3000’ を選ぶことで同じ操作ができます。</li>
+                <li>
+                    <p>例えば、 http://localhost:3000/posts へアクセスしたい場合は、’Preview’ - ‘Port 3000’ を選んだあと、 ‘/posts’ をアドレス欄の末尾に加えてください。</p>
+                </li>
+                <li>
+                    ※ Nitrous.io についての日本語の説明記事があります。分からないことがあった場合に役立つかもしれません。
+                    <ul>
+                        <li><a href="http://qiita.com/machu/items/0ecc5699273c18fd1cd8">WebブラウザだけではじめるRuby/Railsプログラミング</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

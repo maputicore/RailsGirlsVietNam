@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h1 id="rails-girls-">Hướng dẫn làm ứng dụng Rails Girls</h1>
+
+            <p><em>Viết bởi Vesa Vänskä, <a href="https://twitter.com/vesan">@vesan</a></em>
+            </p>
+
+            <p><strong>Hãy chắc chắn rằng bạn đã cài đặt Rails.</strong> <a href="/install"><strong>Nếu chưa cài, hãy làm theo hướng dẫn hướng dẫn ở đây.</strong></a>
+            </p>
+
+            <h2 id="section">Làm quen với các công cụ</h2>
+
+            <h3 id="i-classicon-text-editornbspi-"><i class="icon-text-editor"> </i>Trình soạn thảo</h3>
+
+            <p><a href="https://atom.io/">Atom</a>, <a href="http://www.sublimetext.com">Sublime Text</a>, Vim và Emacs là một số trình soạn thảo bạn có thể sử dụng cho việc viết mã và chỉnh sửa tập tin.</p>
+
+            <h3 id="i-classicon-promptnbspi--windows-"><i class="icon-prompt"> </i>Terminal (hay Command Prompt trên Windows)</h3>
+
+            <p>Nơi bạn khởi động rails server hay chạy lệnh.</p>
+
+            <h3 id="i-classicon-browsernbspi-web-firefox-safari-chrome"><i class="icon-browser"> </i> Trình duyệt (Firefox, Safari, Chrome)</h3>
+
+            <p>Để xem ứng dụng của bạn.</p>
+
+            <p>※ Bạn cần chú ý lựa chọn chỉ dẫn chính xác cho hệ điều hành của mình - các lệnh cần chạy trên Windows sẽ khác một chút so với Mac và Linux. Lưu ý những chỗ có chú thích riêng cho Windows. Nếu bạn dùng một dịch vụ đám mây (như nitrous), bạn cần chạy các lệnh cho Linux ngay cả khi bạn đang dùng máy tính chạy trên Windows.</p>
+
+            <h2 id="section-1"><em>1.</em>Khởi tạo ứng dụng</h2>
+
+            <p>Chúng ta sẽ khởi tạo một ứng dụng Rails mới với tên gọi <em>railsgirls</em>
+            </p>
+
+            <p>Trước hết, hãy mở terminal lên.</p>
+
+            <ul>
+                <li>OS X: Mở Spotlight, nhập <em>Terminal</em> và nhấn vào ứng dụng Terminal.</li>
+                <li>Windows: Nhấn Start và tìm <em>Command Prompt</em>, rồi nhấn vào <em>Command Prompt with Ruby on Rails</em>.</li>
+                <li>Linux (Ubuntu/Fedora): Tìm <em>Terminal</em> trên bảng điều khiển và nhấn <em>Terminal</em>.</li>
+                <li>Dịch vụ đám mây (Như Nitrous): Đăng nhập vào tài khoản, khởi động box của bạn và chuyển sang IDE (xem chi tiết ở <a href="/install#using-a-cloud-service">hướng dẫn cài đặt</a>). Terminal thường nằm phía dưới cùng của cửa sổ trình duyệt.</li>
+            </ul>
+
+            <p>Tiếp theo nhập các lệnh sau vào terminal:</p>
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">mkdir projects
+<span class="nb">cd </span>projects
+rails new railsgirls
+<span class="nb">cd </span>railsgirls
+rails server</code></pre>
+            </div>
+
+            <p>Truy cập vào địa chỉ <a href="http://localhost:3000">http://localhost:3000</a> từ trình duyệt. Nếu bạn sử dụng dịch vụ đám mây (như nitrous), hãy sử dụng tính năng xem trước (xem chi tiết ở <a href="/install#using-a-cloud-service">hướng dẫn cài đặt</a>).</p>
+
+            <p>Bạn sẽ thấy trang “Welcome aboard”, thể hiện rằng việc khởi tạo ứng dụng hoạt động đúng như mong muốn.</p>
+
+            <p>Nhấn CTRL-C trong terminal để tắt server.</p>
+
+            <p><strong>Huấn luyện viên:</strong> Giải thích ý nghĩa của mỗi lệnh. Những gì được tạo ra? Server làm những gì?</p>
+
+            <h2 id="idea--scaffold-"><em>2.</em>Tạo scaffold cho Idea</h2>
+
+            <p>Chúng ta sẽ dùng tính năng scaffold (tạo giàn) để tạo ra một điểm bắt đầu cho phép chúng ta liệt kê, thêm, xóa, sửa và xem các thứ; trong trường hộ này là idea.</p>
+
+            <p><strong>Huấn luyện viên:</strong> Rails scaffolding là gì? (giải thích ý nghĩa của câu lệnh, tên model và bảng liên quan trong cơ sở dữ liệu, qui ước đặt tên, thuộc tính (attributes) và kiểu (type), v.v.).</p>
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">rails generate scaffold idea name:string description:text picture:string</code></pre>
+            </div>
+
+            <p>Quá trình scaffold sẽ tạo ra các tệp tin mới trong thư mục dự án. Sau đó chúng ta cần chạy thêm lệnh sau để cập nhật cơ sở dữ liệu và khởi động lại server:</p>
+
+
+            <div class="os-specific">
+                <p>Mac và Linux</p>
+                <div class="nix">
+                    <i class="icon-small-prompt"></i>
+                    <div class="highlight"><pre><code class="language-sh" data-lang="sh">bin/rake db:migrate
+rails server</code></pre>
+                    </div>
+
+                </div>
+                <p>Windows</p>
+                <div class="win">
+                    <i class="icon-small-prompt"></i>
+                    <div class="highlight"><pre><code class="language-sh" data-lang="sh">ruby bin/rake db:migrate
+rails server</code></pre>
+                    </div>
+
+                </div>
+            </div>
+
+            <p>Truy cập <a href="http://localhost:3000/ideas">http://localhost:3000/ideas</a> trên trình duyệt. Người dùng dịch vụ đám mây (ví dụ nitrous) cần thêm /ideas vào sau địa chỉ xem trước (xem <a href="/install#using-a-cloud-service">hướng dẫn cài đặt</a>).</p>
+
+            <p>Nhấn vào các liên kết mới xuất hiện trong ứng dụng xem chúng ta có gì sau khi chạy scaffold. Nhấn CTRL-C trong terminal để tắt server khi bạn không còn dùng ứng dụng.</p>
+
+            <h2 id="section-2"><em>3.</em>Thiết kế</h2>
+
+            <p><strong>Huấn luyện viên: </strong> Nói về quan hệ giữa HTML và Rails. Phần nào trong views là HTML và phần nào là Embedded Ruby (ERB)? MVC là gì và nó có liên quan thế nào tới ứng dụng của chúng ta? (models và controllers chịu trách nhiệm cho việc tạo ra các HTML views).</p>
+
+            <p>Ứng dụng hiện tại trông chưa được đẹp lắm. Chúng ta sẽ dùng Twitter Bootstrap để style cho ứng dụng dễ dàng hơn.</p>
+
+            <p>Mở <code>app/views/layouts/application.html.erb</code> bằng trình soạn thảo, và trên dòng
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>Thêm</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css&quot;&gt;</span>
+<span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css&quot;&gt;</span></code></pre>
+                </div>
+
+                <p>Và thay,</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>Bằng</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;div class=&quot;container&quot;&gt;</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">&lt;/div&gt;</span></code></pre>
+                </div>
+
+                <p>Cùng thêm một thanh điều hướng và ‘footer’ vào bố cục nữa nhé. Trong cùng tập tin đang mở, thêm vào dưới <code>&lt;body&gt;</code>.</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-default navbar-fixed-top&quot;</span> <span class="na">role=</span><span class="s">&quot;navigation&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-header&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">class=</span><span class="s">&quot;navbar-toggle&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;collapse&quot;</span> <span class="na">data-target=</span><span class="s">&quot;.navbar-collapse&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;sr-only&quot;</span><span class="nt">&gt;</span>Toggle navigation<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-bar&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+      <span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;navbar-brand&quot;</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>The Idea app<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;collapse navbar-collapse&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav navbar-nav&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;active&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/ideas&quot;</span><span class="nt">&gt;</span>Ideas<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre>
+                </div>
+
+                <p>và trước <code>&lt;/body&gt;</code> thêm</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;footer&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+    Rails Girls 2015
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre>
+                </div>
+
+                <p>Bây giờ, chúng ta hãy cùng thay đổi style của bảng ideas. Mở <code>app/assets/stylesheets/application.css</code> và thêm vào phía dưới cùng:</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">body</span> <span class="p">{</span> <span class="k">padding-top</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">footer</span> <span class="p">{</span> <span class="k">margin-top</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">table</span><span class="o">,</span> <span class="nt">td</span><span class="o">,</span> <span class="nt">th</span> <span class="p">{</span> <span class="k">vertical-align</span><span class="o">:</span> <span class="k">middle</span><span class="p">;</span> <span class="k">border</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">th</span> <span class="p">{</span> <span class="k">border-bottom</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#DDD</span><span class="p">;</span> <span class="p">}</span></code></pre>
+                </div>
+
+                <p>Hãy lưu các thay đổi lại và tải lại trình duyệt để xem những gì đã thay đổi. Bạn cũng có thể tiếp tục sửa HTML và CSS nếu muốn. </p>
+                <p>Trong trường hợp terminal hiển thị thông báo lỗi đại loại như có vấn đề với JavaSscript hay CoffeeScript, hãy cài đặt
+                    <a href="http://nodejs.org/download/">nodejs</a>. Vấn dề này không xảy ra với RailsInstaller (mà xảy ra khi bạn cài đặt Rails qua dòng lệnh <code>gem install rails</code> trên Mac và Linux).</p>
+
+                <p><strong>Huấn luyện viên:</strong> Nói một chút về CSS và bố cục trang web.</p>
+
+                <h2 id="thm-chc-nng-ti-nh-ln"><em>4.</em> Thêm chức năng tải ảnh lên</h2>
+
+                <p>Chúng ta cần cài đặt thêm 1 phần mềm để có thể tải lên tập tin trong Rails.</p>
+
+                <p>Mở Gemfile trong thư mục của dự án bằng trình soạn thảo và dưới dòng</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span></code></pre>
+                </div>
+
+                <p>và</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">&#39;carrierwave&#39;</span></code></pre>
+                </div>
+
+                <p><strong>Huấn luyện viên</strong>: Giải thích thư viện là gì, tại sao chúng hữu dụng. Diễn giải về phần mềm mã nguồn mở.</p>
+
+                <p>Nhấn <code>CTRL-C</code> trong terminal để thoát khỏi server.</p>
+
+                <p>Trong terminal chạy:</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-sh" data-lang="sh">bundle</code></pre>
+                </div>
+
+                <p>Bây giờ chúng ta có thể tạo các đoạn code xử lý việc upload. Trong terminal chạy:</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-sh" data-lang="sh">rails generate uploader Picture</code></pre>
+                </div>
+
+                <p>Vui lòng khởi động Rails server.</p>
+
+                <p><strong>Chú ý</strong>: Một vài người sử dụng một cửa sổ terminal riêng để chạy Rails server liên tục. Trong trường hợp đó, Rails server <strong>cần được khởi động lại</strong>. Việc này là cần thiết để ứng dụng load các thư viện mới được thêm vào.</p>
+
+                <p>Mở <code>app/models/idea.rb</code> và dưới dòng</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Idea</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span></code></pre>
+                </div>
+
+                <p>thêm</p>
+                <i class="icon-small-prompt"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mount_uploader</span> <span class="ss">:picture</span><span class="p">,</span> <span class="no">PictureUploader</span></code></pre>
+                </div>
+
+                <p>Mở <code>app/views/ideas/_form.html.erb</code> và đổi</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:picture</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>thành</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">file_field</span> <span class="ss">:picture</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>Thỉnh thoảng bạn sẽ gặp phải lỗi <code>TypeError: can’t cast ActionDispatch::Http::UploadedFile to string</code>.</p>
+
+                <p>Trong trường hợp đó, thay đổi dòng sau trong tệp tin <code>app/views/ideas/_form.html.erb change the line</code>
+                </p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@idea</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>thành</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@idea</span><span class="p">,</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:multipart</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">}</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>Trên trình duyệt, thêm idea mới với ảnh đi kèm. Khi bạn upload một ảnh, trông nó không được đẹp lắm vì đường dẫn tới ảnh không chính xác. Hãy cùng sửa lại chỗ này.</p>
+
+                <p>Mở <code>app/views/ideas/show.html.erb</code> và thay</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="vi">@idea</span><span class="o">.</span><span class="n">picture</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>bằng</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="vi">@idea</span><span class="o">.</span><span class="n">picture_url</span><span class="p">,</span> <span class="ss">:width</span> <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">)</span> <span class="k">if</span> <span class="vi">@idea</span><span class="o">.</span><span class="n">picture</span><span class="o">.</span><span class="n">present?</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+                </div>
+
+                <p>Bây giờ hãy tải lại trình duyệt để xem những gì đã thay đổi.</p>
+
+                <p><strong>Huấn luyện viên</strong>: Nói một chút về HTML.</p>
+
+                <h2 id="tinh-chnh-routes"><em>5.</em> Tinh chỉnh routes</h2>
+
+                <p>Mở http://localhost:3000 (hay địa chỉ xem trước, nếu bạn dùng một dịch vụ đám mây). Vẫn là trang “Welcome aboard”. Hãy cùng chuyển hướng nó tới trang danh sách idea.</p>
+
+                <p>Mở <code>config/routes.rb</code> và thêm vào sau dòng đầu tiên</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/ideas&#39;</span><span class="p">)</span></code></pre>
+                </div>
+
+                <p>Kiểm tra thay đổi này bằng cách mở root path (đường dẫn gốc) (là http://localhost:3000/ hay địa chỉ xem trước) trên trình duyệt.</p>
+
+                <p><strong>Huấn luyện viên</strong>: Nói về routes, chi tiết về thứ tự sắp xếp của routes và mối liên hệ của chúng tới các tệp tin tĩnh.</p>
+
+                <h2 id="to-trang-tnh-cho-ng-dng">Tạo trang tĩnh cho ứng dụng</h2>
+
+                <p>Hãy cùng thêm một trang tĩnh vào ứng dụng của chúng ta để giữ các thông tin về tác giả của ứng dụng - chính là bạn!</p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-sh" data-lang="sh">rails generate controller pages info</code></pre>
+                </div>
+
+                <p>This command will create you a new folder under <code>app/views</code> called <code>/pages</code> and under that a file called <code>info.html.erb</code> which will be your info page.</p>
+
+                <p>Lệnh này sẽ tạo ra một thư mục mới <code>/pages</code> nằm trong thư mục <code>app/views</code> và bên trong đó là tệp tin <code>info.html.erb</code>, trang thông tin chúng ta cần.</p>
+
+                <p>Nó cũng thêm 1 route đơn gian vào trong <code>config/routes.rb</code>
+                </p>
+                <i class="icon-small-text-editor"></i>
+                <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get</span> <span class="s2">&quot;pages/info&quot;</span></code></pre>
+                </div>
+
+                <p>Bây giờ bạn có thể mở tệp tin <code>app/views/pages/info.html.erb</code> và thêm các thông tin về bạn bằng HTML. Để xem trang thông tin này, truy cập http://localhost:3000/pages/info, hoặc nếu bạn sử dụng một dịch vụ đám mây, hãy thêm ‘/pages/info’ vào sau địa chỉ xem trước.</p>
+
+                <h2 id="section-5">Tiếp theo?</h2>
+
+                <ul>
+                    <li>Thêm thiết kế sử dụng HTML &amp; CSS</li>
+                    <li>Thêm đánh giá (rating)</li>
+                    <li>Sử dụng CoffeeScript (hay JavaScript) để thêm tương tác</li>
+                    <li>Thêm tính năng thay đổi kích thước ảnh để ảnh được tải nhanh hơn</li>
+                </ul>
+
+                <h2 id="section-6">Các hướng dẫn bổ sung</h2>
+
+                <ul>
+                    <li>Guide 0: <a href="https://github.com/PragTob/rails-beginner-cheatsheet">Các cheatsheet tiện dụng cho Ruby, Rails, console etc.</a>
+                    </li>
+                    <li>Guide 1: <a href="./github.html">Đẩy ứng dụng của bạn lên GitHub, Alyson La</a>
+                    </li>
+                    <li>Guide 2: <a href="./commenting.html">Thêm tính năng bình luận, Janika Liiv</a>
+                    </li>
+                    <li>Guide 3: <a href="./heroku.html">Đưa ứng dụng của bạn trực tuyến với Heroku, Terence Lee</a>
+                    </li>
+                    <li>Guide 4: <a href="./thumbnails.html">Tạo thumbnail cho ảnh, Miha Filej</a>
+                    </li>
+                    <li>Guide 5: <a href="./design.html">Thêm thiết kế với HTML &amp; CSS, Alex Liao</a>
+                    </li>
+                    <li>Guide 6: <a href="./devise.html/">Thêm tính năng xác thực với Devise, Piotr Steininger</a>
+                    </li>
+                    <li>Guide 7: <a href="./gravatar.html">Thêm ảnh đại diện với Gravatar</a>
+                    </li>
+                    <li>Guide 8: <a href="./testing-rspec.html">Test ứng dụng với RSpec</a>
+                    </li>
+                    <li>Guide 9: <a href="./continuous.html">Continuous Deployment với Codeship</a>
+                    </li>
+                    <li>Guide 10: <a href="https://github.com/lbain/railsgirls">Các giải thích thêm về ứng dụng, Lucy Bain</a>
+                    </li>
+                </ul>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>
