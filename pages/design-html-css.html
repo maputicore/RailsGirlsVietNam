@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/code.css" rel="stylesheet" />
+    <link href="../favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="../index.html" id="logo">
+                <img alt="Rails Girls Guides" src="../images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="../index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h2 id="header-"><em>1.</em>Design header</h2>
+
+            <p>Đặt đoạn mã sau vào dưới cùng của <code>app/assets/stylesheets/application.css</code>:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="p">{</span>
+  <span class="k">min-height</span><span class="o">:</span> <span class="m">38px</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p>Bây giờ làm mới trang và kiểm tra các thay đổi. Bạn có thể thử thay đổi màu sắc hoặc phông chữ của tiêu đề. Bạn có thể kiểm tra các tài liệu tham khảo màu sắc <a href="http://color.uisdc.com/">http://color.uisdc.com/</a>.</p>
+
+            <p><strong>Coach：</strong> Nói về property <code>display</code>, inline và block.</p>
+
+            <p>Sau đó, hãy đặt các dòng ở phía dưới:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">18px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="k">transparent</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>Coach:</strong> Giải thích 4 trạng thái của một liên kết</p>
+
+            <h2 id="table-"><em>2.</em> Design table</h2>
+
+            <p>Chúng tôi chỉ đơn giản là sử dụng twitter <a href="http://www.bootcss.com/">Bootstrap</a>, để đánh bóng table.find của chúng tôi dòng này từ <code>app/views/ideas/index.html.erb</code> và thay thế：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table&gt;</span></code></pre>
+            </div>
+
+            <p>↓</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span></code></pre>
+            </div>
+
+            <p>Thay đổi kích thước của hình ảnh bằng cách sử dụng các dòng sau.</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="n">idea</span><span class="o">.</span><span class="n">picture_url</span><span class="p">,</span> <span class="ss">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">)</span> <span class="k">if</span> <span class="n">idea</span><span class="o">.</span><span class="n">picture</span><span class="o">.</span><span class="n">present?</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>Thay đổi width và xem những gì sẽ xảy ra.</p>
+
+            <p>Thêm những dòng sau vào cuối tập tin <code>app/assets/stylesheets/ideas.css.scss</code>：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p>Thử thêm một số background style với <code>background-image</code> tham khảo một số mẫu tại <a href="http://subtlepatterns.com/">http://subtlepatterns.com/</a>.</p>
+
+            <h2 id="footer-"><em>3.</em>Thêm style cho footer</h2>
+
+            <p>Thêm vào dưới cùng của <code>app/assets/stylesheets/application.css</code> những dòng sau:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">footer</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#ebebeb</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">30px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p>Cố gắng thêm vào <code>footer</code> nhiều thứ hơn.</p>
+
+            <h2 id="button-"><em>4.</em>Thêm style vào button</h2>
+
+            <p>Mở <a href="http://localhost:3000/ideas/new">http://localhost:3000/ideas/new</a> và tìm nút <code>Create Idea</code> thêm những dòng này vào.</p>
+
+            <p><code>app/assets/stylesheets/ideas.css.scss</code></p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">"submit"</span><span class="o">]</span> <span class="p">{</span>
+   <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+   <span class="k">font-size</span><span class="o">:</span> <span class="m">13px</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+   <span class="k">border</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+   <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+ <span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>Coach：</strong> Giải thích làm thế nào để sử dụng <code>border</code> trong CSS, hãy thử thay đổi style  của button như vòng quanh góc, thêm vào bóng tối hoặc màu sắc vv.</p>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>
