@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h1 id="thm-gravatar-vo-ng-dng">Thêm Gravatar vào ứng dụng</h1>
+
+            <p><em>Viết bởi Catherine Jones</em>
+            </p>
+
+            <p>Hướng dẫn này giả định rằng bạn đã tạo một ứng dụng Rails Girls tại <a href="http://guides.railsgirls.com/app/">hướng dẫn xây dựng ứng dụng</a> và thêm tính năng xác thực (authentication) sử dụng <a href="http://guides.railsgirls.com/devise/">Devise</a>.</p>
+
+            <h3 id="ch-">Chú ý</h3>
+
+            <p>Bạn cần có một địa chỉ email đã đăng kí với Gravatar để thực hiện theo hướng dẫn này. Nếu chưa có, bạn có thể đăng kí một tài khoản mới tại <a href="http://en.gravatar.com/">gravatar.com</a>.</p>
+
+            <h2 id="thm-gravtastic-gem"><em>1.</em> Thêm Gravtastic gem</h2>
+
+            <p>Mở <code>Gemfile</code> và dưới <code>devise</code> gem, thêm vào</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'gravtastic'</span></code></pre>
+            </div>
+
+            <p>Trong terminal chạy</p>
+
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">bundle install</code></pre>
+            </div>
+
+            <p>Gravtastic gem sẽ được cài đặt. Hãy nhớ khởi động lại server.</p>
+
+            <h2 id="thit-lp-gravatar-cho-ng-dng"><em>2.</em> Thiết lập Gravatar cho ứng dụng</h2>
+
+            <p>Mở <code>app/models/user.rb</code> và thêm đoạn code sau</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">include</span> <span class="no">Gravtastic</span>
+<span class="n">gravtastic</span></code></pre>
+            </div>
+
+            <p>vào ngay sau dòng đầu tiên.</p>
+
+            <h2 id="cu-hnh-gravatar"><em>3.</em> Cấu hình Gravatar</h2>
+
+            <p>Mở <code>app/views/layouts/application.html.erb</code> và giữa</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">user_signed_in?</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>và</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>thêm</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">image_tag</span> <span class="n">current_user</span><span class="o">.</span><span class="n">gravatar_url</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>Bây giờ bạn có thể mở ứng dụng bằng trình duyệt và đăng nhập với email (đã được liên kết với 1 Gravatar). Bạn sẽ thấy Gravatar của bạn hiển thị trong ứng dụng.</p>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

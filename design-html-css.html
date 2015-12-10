@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h2 id="header-"><em>1.</em>header をデザインしよう</h2>
+
+            <p><code>app/assets/stylesheets/application.css</code> の最後に以下のコードを追加してください。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="p">{</span>
+  <span class="k">min-height</span><span class="o">:</span> <span class="m">38px</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p>では、ページを更新して変更を確認しましょう。 それから、ヘッダーの色やフォントをいろいろ変えて、試してみましょう。
+                <a href="http://color.uisdc.com/">http://color.uisdc.com/</a> では、色のリファレンスを見ることができます。</p>
+
+            <p><strong>コーチより：</strong> <code>display</code> プロパティ、そして inline と block 要素について話してみましょう。</p>
+
+            <p>次に、これらの行をコードの一番下に追加します。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">18px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="k">transparent</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>コーチより：</strong> link が持つ、4つの状態について説明してください。</p>
+
+            <h2 id="table-"><em>2.</em>table をデザインしよう</h2>
+
+            <p>table により磨きをかけるために、twitter <a href="http://www.bootcss.com/">Bootstrap</a> を使います。 この行を <code>app/views/ideas/index.html.erb</code> から見つけて、以下のように置き換えてください。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table&gt;</span></code></pre>
+            </div>
+
+            <p>↓</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span></code></pre>
+            </div>
+
+            <p>以下のコードを使って、画像のサイズを調整しましょう。</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="n">idea</span><span class="o">.</span><span class="n">picture_url</span><span class="p">,</span> <span class="ss">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">)</span> <span class="k">if</span> <span class="n">idea</span><span class="o">.</span><span class="n">picture</span><span class="o">.</span><span class="n">present?</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>width を変更してみて、何が起こるか見てみましょう。</p>
+
+            <p><code>app/assets/stylesheets/ideas.css.scss</code> の最後に以下のコードを追加しましょう。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><a href="http://subtlepatterns.com/">http://subtlepatterns.com/</a> のいくつかのパターンを参考に、<code>background-image</code> プロパティを使って、背景のスタイルを追加してみましょう。</p>
+
+            <h2 id="footer-"><em>3.</em>footer にスタイルを追加しよう</h2>
+
+            <p><code>app/assets/stylesheets/application.css</code> の最後にこのコードを追加しましょう：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">footer</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#ebebeb</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">30px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><code>footer</code> にもっとスタイルを追加してみましょう。それから、位置も調整してみましょう。</p>
+
+            <h2 id="button-"><em>4.</em>button にスタイルを追加しよう</h2>
+
+            <p><a href="http://localhost:3000/ideas/new">http://localhost:3000/ideas/new</a> を開いて、<code>Create Idea</code> ボタンを見つけてください。</p>
+
+            <p><code>app/assets/stylesheets/ideas.css.scss</code> にこれらのコードを追加しましょう。</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">"submit"</span><span class="o">]</span> <span class="p">{</span>
+   <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+   <span class="k">font-size</span><span class="o">:</span> <span class="m">13px</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+   <span class="k">border</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+   <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+ <span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>コーチより：</strong> css の <code>border</code> の使い方を説明してください。そして、角を丸くしたり、影や色をつけたりというように、ボタンのスタイルを変えてみましょう。</p>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h2 id="header-"><em>1.</em>header をデザインしよう</h2>
+
+            <p><code>app/assets/stylesheets/application.css</code> の最後に以下のコードを追加してください。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="p">{</span>
+  <span class="k">min-height</span><span class="o">:</span> <span class="m">38px</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p>では、ページを更新して変更を確認しましょう。 それから、ヘッダーの色やフォントをいろいろ変えて、試してみましょう。
+                <a href="http://color.uisdc.com/">http://color.uisdc.com/</a> では、色のリファレンスを見ることができます。</p>
+
+            <p><strong>コーチより：</strong> <code>display</code> プロパティ、そして inline と block 要素について話してみましょう。</p>
+
+            <p>次に、これらの行をコードの一番下に追加します。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">18px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.navbar</span> <span class="nt">a</span><span class="nc">.brand</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="k">transparent</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>コーチより：</strong> link が持つ、4つの状態について説明してください。</p>
+
+            <h2 id="table-"><em>2.</em>table をデザインしよう</h2>
+
+            <p>table により磨きをかけるために、twitter <a href="http://www.bootcss.com/">Bootstrap</a> を使います。 この行を <code>app/views/ideas/index.html.erb</code> から見つけて、以下のように置き換えてください。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table&gt;</span></code></pre>
+            </div>
+
+            <p>↓</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span></code></pre>
+            </div>
+
+            <p>以下のコードを使って、画像のサイズを調整しましょう。</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="n">idea</span><span class="o">.</span><span class="n">picture_url</span><span class="p">,</span> <span class="ss">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">)</span> <span class="k">if</span> <span class="n">idea</span><span class="o">.</span><span class="n">picture</span><span class="o">.</span><span class="n">present?</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>width を変更してみて、何が起こるか見てみましょう。</p>
+
+            <p><code>app/assets/stylesheets/ideas.css.scss</code> の最後に以下のコードを追加しましょう。：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">255</span><span class="o">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><a href="http://subtlepatterns.com/">http://subtlepatterns.com/</a> のいくつかのパターンを参考に、<code>background-image</code> プロパティを使って、背景のスタイルを追加してみましょう。</p>
+
+            <h2 id="footer-"><em>3.</em>footer にスタイルを追加しよう</h2>
+
+            <p><code>app/assets/stylesheets/application.css</code> の最後にこのコードを追加しましょう：</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">footer</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#ebebeb</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">30px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </div>
+
+            <p><code>footer</code> にもっとスタイルを追加してみましょう。それから、位置も調整してみましょう。</p>
+
+            <h2 id="button-"><em>4.</em>button にスタイルを追加しよう</h2>
+
+            <p><a href="http://localhost:3000/ideas/new">http://localhost:3000/ideas/new</a> を開いて、<code>Create Idea</code> ボタンを見つけてください。</p>
+
+            <p><code>app/assets/stylesheets/ideas.css.scss</code> にこれらのコードを追加しましょう。</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">"submit"</span><span class="o">]</span> <span class="p">{</span>
+   <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+   <span class="k">font-size</span><span class="o">:</span> <span class="m">13px</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="o">:</span> <span class="m">#f55e55</span><span class="p">;</span>
+   <span class="k">border</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+   <span class="k">color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+ <span class="p">}</span></code></pre>
+            </div>
+
+            <p><strong>コーチより：</strong> css の <code>border</code> の使い方を説明してください。そして、角を丸くしたり、影や色をつけたりというように、ボタンのスタイルを変えてみましょう。</p>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>

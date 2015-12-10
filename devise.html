@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rails Girls - VietNamese</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/code.css" rel="stylesheet" />
+    <link href="./favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="span3" href="./index.html" id="logo">
+                <img alt="Rails Girls Guides" src="./images/railsgirls-guides.png">
+            </a>
+            <nav>
+                <span>Phiên bản Tiếng Việt</span>
+                <a href="./index.html">Trang chủ</a>
+                <a href="http://railsgirls.jp/events/">Sự kiện</a>
+                <a href="http://blog.railsgirls.jp/">Blog</a>
+                <a href="http://railsgirls.jp/sponsors/">Nhà Tài trợ</a>
+                <a href="http://railsgirls.jp/about/">Giới thiệu</a>
+            </nav>
+        </div>
+    </header>
+    <article class="container">
+        <div class="span10">
+            <h1 id="thm-tnh-nng-xc-thc-vi-devise">Thêm tính năng xác thực với Devise</h1>
+
+            <p><em>Viết bởi Piotr Steininger, <a href="https://twitter.com/polishprince">@polishprince</a></em>
+            </p>
+
+            <p><em>Cập nhật bởi Ernesto Jimenez, <a href="https://twitter.com/ernesto_jimenez">@ernesto_jimenez</a></em>
+            </p>
+
+            <p>** Hướng dẫn này giả định rằng bạn đã xây dựng một ứng dụng Rails Girls theo** <a href="/app"><strong>hướng dẫn xây dựng ứng dụng</strong></a>.</p>
+
+            <h2 id="thm-devise-gem"><em>1.</em> Thêm devise gem</h2>
+
+            <p>Mở <code>Gemfile</code> và thêm</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'devise'</span></code></pre>
+            </div>
+
+            <p>rồi chạy</p>
+
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">bundle install</code></pre>
+            </div>
+
+            <p>để cài đặt gem. <strong>Và nhớ khởi động lại server</strong>.</p>
+
+            <h2 id="thit-lp-devise-trong-ng-dng"><em>2.</em> Thiết lập devise trong ứng dụng</h2>
+
+            <p>Chạy lệnh sau trong terminal:</p>
+
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">rails g devise:install</code></pre>
+            </div>
+
+            <h2 id="cu-hnh-devise"><em>3.</em> Cấu hình Devise</h2>
+
+            <p>Hãy chắc chắn bạn đã định nghĩa <code>default_url_options</code> trong các tệp tin môi trường. Mở <code>config/environments/development.rb</code> và thêm dòng sau:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">host</span><span class="p">:</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="ss">port</span><span class="p">:</span> <span class="mi">3000</span> <span class="p">}</span></code></pre>
+            </div>
+
+            <p>trước từ khóa <code>end</code>.</p>
+
+            <p>Mở <code>app/views/layouts/application.html.erb</code> và thêm:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">notice</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  &lt;p class="alert alert-success"&gt;</span><span class="cp">&lt;%=</span> <span class="n">notice</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">alert</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  &lt;p class="alert alert-danger"&gt;</span><span class="cp">&lt;%=</span> <span class="n">alert</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>ngay phía trên</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>Mở <code>app/views/ideas/show.html.erb</code> và xóa dòng:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;p id="notice"&gt;</span><span class="cp">&lt;%=</span> <span class="n">notice</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span></code></pre>
+            </div>
+
+            <p>Làm tương tự với <code>app/views/comments/show.html.erb</code>. Những dòng này không còn cần thiết vì chúng ta đã đưa phần “notice” vào tệp tin <code>app/views/layouts/application.html.erb</code>.</p>
+
+            <h2 id="thnh-lp-user-model"><em>4.</em> Thành lập User model</h2>
+
+            <p>Chúng ta sẽ sử dụng một generator script có sẵn để khởi tạo User model.</p>
+
+            <i class="icon-small-prompt"></i>
+            <div class="highlight"><pre><code class="language-sh" data-lang="sh">rails g devise user
+   rake db:migrate</code></pre>
+            </div>
+
+            <p><strong>Huấn luyện viên</strong>: Giải thích về user model được khởi tạo. Các trường (fields) là gì?</p>
+
+            <h2 id="to-user-u-tin"><em>5.</em> Tạo user đầu tiên</h2>
+
+            <p>Bây giờ, khi mọi thứ đã được thiết lập xong, bạn có thể khởi tạo user đầu tiên. Devise đã tạo tất cả các đoạn code và routes cần thiết cho việc tạo tài khoản, đăng nhập, đăng xuất, v.v.</p>
+
+            <p>Hãy chắc chắn là server đang chạy, mở <a href="http://localhost:3000/users/sign_up">http://localhost:3000/users/sign_up</a> và tạo tài khoản cho bạn.</p>
+
+            <h2 id="thm-lin-kt-ng-k-v-ng-nhp"><em>6.</em> Thêm liên kết đăng kí và đăng nhập</h2>
+
+            <p>Tất cả những việc cần làm bây giờ là thêm liên kết hoặc lưu ý (notice) phù hợp dựa trên tình trạng đăng nhập của người dùng vào góc trên bên phải của thanh điều hướng.</p>
+
+            <p>Để thực hiện, mở <code>app/views/layouts/application.html.erb</code> và thêm:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;p class="navbar-text pull-right"&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">user_signed_in?</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  Logged in as &lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">email</span> <span class="cp">%&gt;</span><span class="x">&lt;/strong&gt;.</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'Edit profile'</span><span class="p">,</span> <span class="n">edit_user_registration_path</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s1">'navbar-link'</span> <span class="cp">%&gt;</span><span class="x"> |</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Logout"</span><span class="p">,</span> <span class="n">destroy_user_session_path</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s1">'navbar-link'</span>  <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Sign up"</span><span class="p">,</span> <span class="n">new_user_registration_path</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s1">'navbar-link'</span>  <span class="cp">%&gt;</span><span class="x"> |</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Login"</span><span class="p">,</span> <span class="n">new_user_session_path</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s1">'navbar-link'</span>  <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre>
+            </div>
+
+            <p>vào ngay dưới</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;ul class="nav"&gt;</span>
+<span class="x">  &lt;li class="active"&gt;&lt;a href="/ideas"&gt;Ideas&lt;/a&gt;&lt;/li&gt;</span>
+<span class="x">&lt;/ul&gt;</span></code></pre>
+            </div>
+
+            <p>Cuối cùng, chúng ta sẽ bắt buộc người dùng phải đăng nhập nếu như họ chưa đăng nhập khi sử dụng ứng dụng. Mở <code>app/controllers/application_controller.rb</code> và thêm:</p>
+
+            <i class="icon-small-text-editor"></i>
+            <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">before_action</span> <span class="ss">:authenticate_user!</span></code></pre>
+            </div>
+
+            <p>dưới dòng <code>protect_from_forgery with: :exception</code>.</p>
+
+            <p>Mở ứng dụng bằng trình duyệt và thử đăng nhập / đăng xuất.</p>
+
+            <p><strong>Huấn luyện viên</strong>: Nói về các helper <code>user_signed_in?</code> và <code>current_user</code>. Giải thích vì sao chúng hữu ích?</p>
+
+            <h2 id="lm-g-tip-theo">Làm gì tiếp theo?</h2>
+
+            <ul>
+                <li>Thêm trường vào User model</li>
+                <li>Thêm quan hệ giữa <code>users</code> và <code>ideas</code>
+                </li>
+                <li>Chỉ cho phép user sửa những idea do mình tạo ra và xóa những comment do mình viết</li>
+                <li>Mở rộng thêm vai trò (role) hoặc permission (sử dụng một gem ủy quyền phổ biến như CanCan)</li>
+            </ul>
+
+        </div>
+    </article>
+    <footer>
+        <p>Copyright 2015 by RailsGirls. All Right Reserved</p>
+    </footer>
+</body>
+
+</html>
